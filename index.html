@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="app.js"></script>
+    <title>Calculador de IMC</title>
+</head>
+<body>
+    <form id="calculateIMC" onsubmit="return false">
+        <div class="field">
+            <label for="person-kilograms">Seu peso</label>
+            <input type="number" id="person-kilograms" maxlength="3" min="1" max="635" placeholder="kg" onkeypress="replaceCommaWithDot('person-kilograms')"> 
+        </div>
+        <div class="field">
+            <label for="person-height">Sua altura</label>
+            <input type="number" id="person-height" maxlength="3" min="1" max="272"  placeholder="cm" onkeypress="replaceCommaWithDot('person-height')"> 
+        </div>
+        <input type="submit" id="calcular" value="Calcular" onclick="result()" />
+    </form>
+
+    <h3>Seu resultado: </h3>
+    <h4><span id="imc-result"></span></h4>
+</body>
+</html>
