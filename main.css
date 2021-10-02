@@ -86,6 +86,9 @@ form{
     height: 10px;
     transition: height 1s linear;
 }
+.progress-stepper li.active label{
+    font-weight: 700;
+}
 .progress-stepper li.active .indicator {
     border-color: gold;
     color: black;
