@@ -9,19 +9,76 @@
     <title>Calculador de IMC</title>
 </head>
 <body>
-    <form id="calculateIMC" onsubmit="return false">
-        <div class="field">
-            <label for="person-kilograms">Seu peso</label>
-            <input type="number" id="person-kilograms" maxlength="3" min="1" max="635" placeholder="kg" onkeypress="replaceCommaWithDot('person-kilograms')"> 
-        </div>
-        <div class="field">
-            <label for="person-height">Sua altura</label>
-            <input type="number" id="person-height" maxlength="3" min="1" max="272"  placeholder="cm" onkeypress="replaceCommaWithDot('person-height')"> 
-        </div>
-        <input type="submit" id="calcular" value="Calcular" onclick="result()" />
-    </form>
+    <section class="container">
+        <h1>Calculadora de IMC</h1>
+        <form id="calculateIMC" onsubmit="return false">
+            <ul class="progress-stepper">
+                <li class="active fix-last-active">
+                    <span class="indicator">1</span>
+                    <label for="person-kilograms">Seu peso<span id="personKG"></span></label>
+                    <div class="field">
+                        <input type="number" id="person-kilograms" name="person-kilograms"
+                               pattern="\d" maxlength="3" min="1" max="635" placeholder="kg"
+                               onkeypress="onKeyPress(0)"> 
+                        <button class="arrow arrow-right" onclick="nextStep()"></button>
+                        <span class="error-msg">O peso não pode ser menor do que 25 kg. <a href="https://pt.wikipedia.org/wiki/Lista_das_pessoas_mais_baixas_do_mundo">Saiba mais.</a></span>
+                    </div>
+                </li>
+                <li>
+                    <span class="indicator">2</span>
+                    <label for="person-height">Sua altura<span id="personHT"></span></label>
+                    <div class="field">
+                        <input type="number" id="person-height" name="person-height" maxlength="3" min="1" max="272"  placeholder="cm"
+                        onkeypress="onKeyPress(1)"> 
+                        <button id="calcular" onclick="result()" class="arrow arrow-right"></button>
+                        <span class="error-msg">A altura não pode ser menor do que 55 cm. <a href="https://pt.wikipedia.org/wiki/Lista_das_pessoas_mais_baixas_do_mundo">Saiba mais.</a> </span>
+                    </div>
+                </li>
+                <li>
+                    <span class="indicator">3</span>
+                    <label>Seu resultado</label>
+                    <div class="field">
+                        <h4 id="imc-result"></h4>
 
-    <h3>Seu resultado: </h3>
-    <h4><span id="imc-result"></span></h4>
+                        <table id="result-table">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">Verifique abaixo na tabela da OMS, se o seu IMC está acima do recomendado para a sua altura. </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th></th>
+                                    <th>IMC</th>
+                                    <th>PESO</th>
+                                </tr>
+                                <tr id="magreza">
+                                    <td>Magreza</td>
+                                    <td>&lt; 18.5</td>
+                                    <td>&lt; 54.7 Kg</td>
+                                </tr>
+                                <tr id="normal">
+                                    <td>Normal</td>
+                                    <td>18.5 a 24.9</td>
+                                    <td>54.7 a 73.7 Kg</td>
+                                </tr>
+                                <tr id="sobrepeso">
+                                    <td>Sobrepeso</td>
+                                    <td>24.9 a 30</td>
+                                    <td>73.7 a 88.8 Kg</td>
+                                </tr>
+                                <tr id="obesidade">
+                                    <td>Obesidade</td>
+                                    <td>&gt; 30</td>
+                                    <td>&gt; 88.8 Kg</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </section>
 </body>
 </html>

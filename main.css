@@ -1,23 +1,158 @@
-.field{
-    width: 100%;
+
+html{    font-family: sans-serif;}
+.container{
+    width: 600px;
+    margin: 90px auto;
 }
-.field label{
+form{
+    width:100%;
+}
+
+.progress-stepper{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+}
+.progress-stepper li {
+    padding: 7px 0 40px 40px;
+    border-left: 1px solid #ccc;
+    position: relative;
+    color: grey;
+    height: 10px;
+    transition: height 1s linear;
+}
+
+.progress-stepper li .indicator {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: goldenrod;
+    border: 1px solid goldenrod;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.progress-stepper li .field{
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+.progress-stepper li .field label{
     width: 100%;
     display: flex;
+    color: goldenrod;
 }
-input[type=number]{
-  width: 100%;
+.progress-stepper li .field input[type=number]{
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+  width: 50%;
+  border: none;
+  outline: 1px solid goldenrod;
 }
-input[type=submit] {
-    display: flex;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
+.progress-stepper li .field .error-msg{
+    color: crimson;
+    font-size: 11px;
+    width: 100%;
+    display: block;
+    font-style: italic;
+    transition: 0.2s;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s linear;
+}
+.progress-stepper li .field .error-msg a{
+    color: crimson;
+}
+.progress-stepper li .field .error-msg.show{
+    visibility: visible;
+    opacity: 1;
+}
+.progress-stepper li.active .indicator {
+    background-color: gold;
+    transition: background-color 1s ease-in;
+}
+.progress-stepper li.active {
+    border-left-color: gold;
+    height: 10px;
+    transition: height 1s linear;
+}
+.progress-stepper li.active .indicator {
+    border-color: gold;
+    color: black;
+}
+.progress-stepper li.active.fix-last-active {
+    border-color: gold;
+    height: auto;
+    transition: height 1s linear;
+}
+.progress-stepper li.active.fix-last-active .field{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s linear;
+}
+
+.progress-stepper li.active .arrow {
+    position: absolute;
+    padding: 10px;
+    -webkit-box-shadow: 2px -2px goldenrod inset;
+    border: solid transparent;
+    border-width: 0 0 1rem 1rem;
+    transition: 0.2s;
+    top: 26%;
+    right: 36%;
+    background: bottom;
     cursor: pointer;
+    outline: none;
 }
+
+.progress-stepper li.active .arrow:hover {
+    box-shadow: 2px -2px 0 2px gold inset;
+    -webkit-box-shadow: 4px -4px gold inset;
+}
+.progress-stepper li.active .arrow-right { transform:rotate(225deg) }
+.progress-stepper li.active .field #imc-result{
+    font-weight: 400;
+}
+.progress-stepper li.active .field #imc-result strong{
+    font-weight: 700;
+}
+.progress-stepper li.active #result-table{
+    display:none;
+    width: auto;
+    margin: 0;
+    min-width: 100%;    
+}
+.progress-stepper li.active #result-table thead th{
+    font-weight: 400;
+    padding: 20px 0px;
+}
+.progress-stepper li.active #result-table tbody th{
+    background-color: lightgoldenrodyellow;
+
+}
+.progress-stepper li.active #result-table tbody th, .progress-stepper li.active #result-table tbody td{
+    font-weight: 700;
+    text-align: left;
+    line-height: 1.3em;
+    font-size: 1em;
+
+    border: 0;
+    border-bottom: solid 1px #efefef;
+    padding: 20px 15px;
+    font-size: 14px;
+}
+.progress-stepper li.active #result-table tr.active{
+    background-color: goldenrod;
+    color: black;
+}
+  
